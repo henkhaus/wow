@@ -1,21 +1,14 @@
-"""
-
-first pass: gathers users from wow.auctiondata
-to populate wow.users
-
-"""
-
 import pymongo
 from pymongo import MongoClient
-from wowlib import wowapi, binary_search
+from wowlib import wowapi, queries
 import time
 
 
 #connection informattion
 client = MongoClient()
 
-print ('Initiating db connection')
-db = client.wow
+print ('Initiating db connection and getting wow data')
+db = client.wowtest
 print("retrieved data")
 posts = db.auctiondata
 userdb = db.users
@@ -23,40 +16,35 @@ timestamp = time.time()
 
 
 #create list of known users
-print("Building known user lists from user database")
 knownUsers = []
 dbusers = userdb.distinct('user')
 for player in dbusers:
     knownUsers.append(player)
-print("Known user list built")
     
 
 
 #aggregates user name and server name return is {_id:{username:"",server:""}}
-print("Aggregating auctiondata to build unique user list ")
 usersdata = posts.aggregate([{'$group':{"_id":{'username': '$username.name', 'server' : '$username.server'}}}])
-print("unique user list complete")
 #create more usable dicyionary
-print("user collection update started")
 userdict = {}
-count = 0
-passcount = 0
 for users in usersdata:
-    
+    cname = str(users['_id']['username'])+" - "+str(users['_id']['server'])
     try:
-        cname = str(users['_id']['username'])+" - "+str(users['_id']['server'])
+       
+        print(cname)
         player ={'user':cname,
         'guild':"_None_",
         'firstseen':timestamp,
-        'lastseen':timestamp}
+        'lastseen':timestamp,
+        'lvl':000}
 
-        if binary_search.binary_search(knownUsers,player['user'])== True:
+        if queries.binary_search(knownUsers,player['user'])== True:
             userdb.update_one({'user':player['user']},{'$set':{'lastseen': timestamp}})
+            updated +=1
+            print (updated)
         else: 
+            print ('adding new player')
             userdb.insert_one(player)
-            count +=1
-    except: passcount +=1
-print("User collection update complete")
+            newcount +=1
+    except: pass
 
-print ("New users : "+str(count))
-print ("errors : "+ str(passcount))

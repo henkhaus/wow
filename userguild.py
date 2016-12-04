@@ -1,9 +1,3 @@
-"""
-takes guild from user list (wow.users) and finds 
-members of each guild found, populating wow.users
-
-"""
-
 import pymongo
 from pymongo import MongoClient
 from wowlib import wowapi, binary_search
@@ -14,7 +8,7 @@ import time
 client = MongoClient()
 
 print ('Initiating db connection')
-db = client.wow
+db = client.wowtest
 print("retrieved data")
 posts = db.users
 timestamp = time.time()
@@ -22,8 +16,50 @@ timestamp = time.time()
 #create list of known users
 print("Building known user lists from user database")
 knownUsers = []
-dbusers = posts.find()
-for player in dbusers:
+guilds = db.find({'server':'Shadow Council').distinct('guild')
+guild_list =[]
+
+for guild in guilds:
+    guild_list.append(guild)
+
+print("Number of Unique Guilds :"+ str(len(guild_list)))
+
+members = {}
+for guild in guild_list:
+    guildinfo = guild_query(guild, 'Shadow Council')
+
+    record ={'server':guildinfo['realm'],
+    'faction':guildinfo['side'],
+    'members':guildinfo['members']
+    }
+
+
+    print(guild + " : "+ len(record['members']))
+
+
+    }
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+'''   
     
     username =(player['user'].split(" - ")[0])
 
@@ -38,7 +74,7 @@ for player in dbusers:
         except: guild = "_None_"
         lvl = playerinfo['level']
         
-        posts.update_one({'user':pid},{'$set':{'guild': guild, 'lvl':lvl, 'guildserver':playerinfo['guild']['realm']}})
+        posts.update_one({'user':pid},{'$set':{'guild': guild, 'lvl':lvl}})
         print("updated")
     except: print("Pass")
 
@@ -48,4 +84,4 @@ print("Known user list built")
 
 
 
-    
+'''    
