@@ -4,7 +4,7 @@ will merge into userguild
 """
 import pymongo
 from pymongo import MongoClient
-from wowlib import wowapi, binary_search
+from wowlib import wowapi
 
 
 
@@ -73,12 +73,14 @@ for guild in guildlist:
                      'side':}},
                      upsert=True)
                     print("added " +user)
-                    '''
+              '''
                 except:print("Failed on "+user)
 
 
-        except:print("failed API call "+ guild)
-
+        except Exception as e:
+            print("failed API call "+ guild)
+            print (e)
+            print (user)
     except:print("Failed" + guild)
 
  #       print("Could not print :"+guild)
