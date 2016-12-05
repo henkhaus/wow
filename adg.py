@@ -16,23 +16,24 @@ db = client.wow
 data = wowapi.auctionurl('Shadow-Council')
 print("retrieved data")
 posts = db.auctiondata
-#create counters
-count = 0
-newcount = 0
-timestamp = time.time()
-updated =0
-print ("Connected")
-#create list of disctinct auctions in memory
-print ("Creating Auction List")
-auction_list = []
-auctions =posts.find().distinct('auc')
-for auction in auctions:
-    auction_list.append(auction)
-print ("Auction List Created")
 
 
-@timethis
+
+@logging.timethis
 def get_data():
+    #create counters
+    count = 0
+    newcount = 0
+    timestamp = time.time()
+    updated =0
+    print ("Connected")
+    #create list of disctinct auctions in memory
+    print ("Creating Auction List")
+    auction_list = []
+    auctions =posts.find().distinct('auc')
+    for auction in auctions:
+        auction_list.append(auction)
+    print ("Auction List Created")
     #Iterate through data returned from wowapi
     for auction  in data:
         row = data[count]
