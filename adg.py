@@ -6,8 +6,10 @@ wow.auctiondata
 """
 import pymongo
 from pymongo import MongoClient
-from wowlib import wowapi, queries, logging
+from wowlib import wowapi, queries, log
 import time
+
+logname = os.path.splitext(__file__)[0]
 
 client = MongoClient()
 
@@ -19,7 +21,7 @@ posts = db.auctiondata
 
 
 
-@logging.timethis
+@log.log(logname)
 def get_data():
     #create counters
     count = 0
