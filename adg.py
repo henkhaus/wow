@@ -6,7 +6,7 @@ wow.auctiondata
 """
 import pymongo
 from pymongo import MongoClient
-from wowlib import wowapi, queries
+from wowlib import wowapi, queries, logging
 import time
 
 client = MongoClient()
@@ -31,49 +31,46 @@ for auction in auctions:
 print ("Auction List Created")
 
 
+@timethis
+def get_data():
+    #Iterate through data returned from wowapi
+    for auction  in data:
+        row = data[count]
+        #create new json, this allows you to add data not returned from wowapi
+        newrow = {'buyout': row['buyout'],
+        'timeLeft': row['timeLeft'],
+        'quantity': row['quantity'],
+        'seed': row['seed'],
+        'username': {'name':row['owner'], 'server':row['ownerRealm']},
+        'owner': row['owner'],
+        'item': row['item'],
+        'rand': row['rand'],
+        'bid': row['bid'],
+        'context': row['context'],
+        'auc': row['auc'],
+        'ownerRealm': row['ownerRealm'],
+        'viewtime': timestamp,
+        'timeupdated': timestamp,
+        'itemname': "-----<None Defined>-----",
+        'status':"Active",
+        'bidincrease': 'N',
+        'bidtrac':{str(x):(0,0) for x in range(48)}
 
-#Iterate through data returned from wowapi
-for auction  in data:
-    row = data[count]
-    #create new json, this allows you to add data not returned from wowapi
-    newrow = {'buyout': row['buyout'],
-    'timeLeft': row['timeLeft'],
-    'quantity': row['quantity'],
-    'seed': row['seed'],
-    'username': {'name':row['owner'], 'server':row['ownerRealm']},
-    'owner': row['owner'],
-    'item': row['item'],
-    'rand': row['rand'],
-    'bid': row['bid'],
-    'context': row['context'],
-    'auc': row['auc'],
-    'ownerRealm': row['ownerRealm'],
-    'viewtime': timestamp,
-    'timeupdated': timestamp,
-    'itemname': "-----<None Defined>-----",
-    'status':"Active",
-    'bidincrease': 'N',
-    'bidtrac':{str(x):(0,0) for x in range(48)}
+        }
+        #if statement to insure that only new data is added to the DB. 
 
-    }
-    #if statement to insure that only new data is added to the DB. 
+        if queries.binary_search(auction_list,newrow['auc'])== True:
+            posts.update_one({'auc':newrow['auc']},{'$set':{'timeupdated': timestamp}})
+            updated +=1
+            print (updated)
+        else: 
+            posts.insert_one(newrow)
+            newcount +=1
+            offset = 25-len(newrow['owner'])
+            print ('New Auction Created by: '+newrow['owner'] + ' '*offset+ ' Total Count :'+ str(count) + "      New auction count : "+ str(newcount) )
+        
+        count +=1
 
-    if queries.binary_search(auction_list,newrow['auc'])== True:
-        posts.update_one({'auc':newrow['auc']},{'$set':{'timeupdated': timestamp}})
-        updated +=1
-        print (updated)
-    else: 
-        posts.insert_one(newrow)
-        newcount +=1
-        offset = 25-len(newrow['owner'])
-        print ('New Auction Created by: '+newrow['owner'] + ' '*offset+ ' Total Count :'+ str(count) + "      New auction count : "+ str(newcount) )
-    
-    count +=1
-
-#set posts to auction data and insert into db
-
-#posts.insert_many(data)
-
-
+get_data()
 
 

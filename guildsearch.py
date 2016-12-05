@@ -19,7 +19,7 @@ posts = db.users
 #create list of unique guilds
 guildlist = []
 user_list = []
-for guild in posts.find({"user": {'$regex' : ".* - Shadow Council.*"}}):
+for guild in posts.find({"user": {'$regex' : ".* - Blackwater Raiders.*"}}):
     if guild['guild'] in guildlist:
         pass
     elif guild['guild']=="_None_":
@@ -31,50 +31,51 @@ for guild in posts.find({"user": {'$regex' : ".* - Shadow Council.*"}}):
 count = 0
 for guild in guildlist:
     try:
-        record = wowapi.guild_query(guild,'Shadow Council')
+        record = wowapi.guild_query(guild,'Blackwater Raiders')
         try:
             for i, member in enumerate(record['members']):
-                user_list.append((record['members'][i]['character']['name']+" - "+record['members'][i]['character']['realm']))
-                user = (record['members'][i]['character']['name']+" - "+record['members'][i]['character']['realm'])
-            
-                newuser = {'guild':guild,
-                'user':user,
-                'lvl':record['members'][i]['character']['level'],
-                'spec':record['members'][i]['character']['spec']['name'],
-                'class':record['members'][i]['character']['class'],
-                'gender':record['members'][i]['character']['gender'],
-                'role':record['members'][i]['character']['spec']['role'],
-                'side':record['side']
-                }
-            
-                try:
-                    #<----------------temp to reschema------------->
-                    posts.update({'user':user},
-                    {'$set':
-                    {'user':user,
-                     'lvl':newuser['lvl'],
-                     'guild':guild,
-                     'side':newuser['side'],
-                     'gender':newuser['gender'],
-                     'role':newuser['role'],
-                     'class':newuser['class'],
-                     'spec':newuser['spec']}},
-                     upsert=True)
-                    print("added " +user)
+                if 'spec' in record['members'][i]['character']:
+                    user_list.append((record['members'][i]['character']['name']+" - "+record['members'][i]['character']['realm']))
+                    user = (record['members'][i]['character']['name']+" - "+record['members'][i]['character']['realm'])
+                
+                    newuser = {'guild':guild,
+                    'user':user,
+                    'lvl':record['members'][i]['character']['level'],
+                    'spec':record['members'][i]['character']['spec']['name'],
+                    'class':record['members'][i]['character']['class'],
+                    'gender':record['members'][i]['character']['gender'],
+                    'role':record['members'][i]['character']['spec']['role'],
+                    'side':record['side']
+                    }
+                
+                    try:
+                        #<----------------temp to reschema------------->
+                        posts.update({'user':user},
+                        {'$set':
+                        {'user':user,
+                        'lvl':newuser['lvl'],
+                        'guild':guild,
+                        'side':newuser['side'],
+                        'gender':newuser['gender'],
+                        'role':newuser['role'],
+                        'class':newuser['class'],
+                        'spec':newuser['spec']}},
+                        upsert=True)
+                        print("added " +user)
 
 
 
-                    '''
-                    posts.update({'user':user},
-                    {'$set':
-                    {'user':user,
-                     'lvl':newuser['lvl'],
-                     'guild':guild,
-                     'side':}},
-                     upsert=True)
-                    print("added " +user)
-              '''
-                except:print("Failed on "+user)
+                        '''
+                        posts.update({'user':user},
+                        {'$set':
+                        {'user':user,
+                        'lvl':newuser['lvl'],
+                        'guild':guild,
+                        'side':}},
+                        upsert=True)
+                        print("added " +user)
+                '''
+                    except:print("Failed on "+user)
 
 
         except Exception as e:
