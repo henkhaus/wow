@@ -19,6 +19,33 @@ db = client.wow
 data = wowapi.auctionurl('Shadow-Council')
 print("retrieved data")
 posts = db.auctiondata
+#findhour is broken. bridtrac returns 
+#{'15': [0, 0],
+# '13': [0, 0], etc..}
+
+#searches through the old bidtrac return and returns an index
+def oldfindhour(bidtrac):
+    print (bidtrac)
+    counter = 0
+    for item in bidtrac:
+        if bidtrac[item]== [0,0]:
+            
+            print ('found it at index '+str(counter))
+            return counter
+            break
+        #else:
+         #  return 0
+        counter += 1
+        print ("       counter"+ str(counter))
+
+
+def findhour(bidtrac):
+    count = 0
+    for i,item in enumerate(bidtrac):
+        if item[i] == (0,0):
+            return i
+            break
+        count +=0
 
 
 
@@ -58,15 +85,23 @@ def get_data():
         'itemname': "-----<None Defined>-----",
         'status':"Active",
         'bidincrease': 'N',
-        'bidtrac':{str(x):(0,0) for x in range(48)}
+        'bidtrac':[(0,0) for x in range(48)] #recently changed from dict of dicts to list of dicts
 
         }
         #if statement to insure that only new data is added to the DB. 
 
         if queries.binary_search(auction_list,newrow['auc'])== True:
-            posts.update_one({'auc':newrow['auc']},{'$set':{'timeupdated': timestamp}})
-            updated +=1
-            print (updated)
+            curr_auc = posts.find_one({"auc":newrow['auc']})
+            try:
+                x = findhour(curr_auc['bidtrac'])
+                posts.update({'auc':newrow['auc']},{'$set':{'timeupdated': timestamp,'bidtrac.'+str(x)+'.0': newrow['bid'],'bidtrac.'+str(x)+'.1': timestamp}})
+                updated +=1
+                print (updated)
+            except:
+                #x = findhour(curr_auc['bidtrac'])
+                posts.update({'auc':newrow['auc']},{'$set':{'timeupdated': timestamp,}})
+                updated +=1
+                print (updated)
         else: 
             posts.insert_one(newrow)
             newcount +=1

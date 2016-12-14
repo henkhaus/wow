@@ -1,6 +1,6 @@
 import pymongo
 from pymongo import MongoClient
-from wowlib import wowapi, binary_search
+from wowlib import wowapi, queries
 import time
 
 
@@ -16,7 +16,7 @@ timestamp = time.time()
 #create list of known users
 print("Building known user lists from user database")
 knownUsers = []
-guilds = db.find({'server':'Shadow Council').distinct('guild')
+guilds = db.find({'server':'Shadow Council'}).distinct('guild')
 guild_list =[]
 
 for guild in guilds:
@@ -37,7 +37,7 @@ for guild in guild_list:
     print(guild + " : "+ len(record['members']))
 
 
-    }
+    
     
 
 

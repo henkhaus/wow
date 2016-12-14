@@ -20,6 +20,7 @@ def log(logname):
         def wrapper(*args, **kwargs):
             #new_log = locallogger(logname)
             start = time.time()
+            new_log.info('func: '+ str(func.__name__) +' started')
             result = func(*args, **kwargs)
             end = time.time()
             new_log.info('func: '+ str(func.__name__) +' - '+ str(end-start))

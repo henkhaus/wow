@@ -71,3 +71,20 @@ def guild_query(guild, realm):
     data = json.loads(encoding)
 
     return data
+
+def itemquery(itemnumber):
+    item = str(itemnumber)
+    key = "8sv23p3ruq39kfng2phrrau3nstevp4j"
+    base = 'https://us.api.battle.net/wow/item/'
+    mid = '?locale=en_US&apikey='
+    #server = realm.replace(' ','-')
+    url = (base +item +mid+key)
+    print (url)
+    #req = urllib2.Request(url)
+    weburl = urllib.request.urlopen(url).read()
+
+    encoding = weburl.decode('UTF-8')
+
+    data = json.loads(encoding)
+
+    return data

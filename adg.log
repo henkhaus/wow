@@ -69,3 +69,59 @@
 2016-12-11 15:43:11,019 - /home/asus/ah/adg - func: get_data - 781.9127399921417
 2016-12-11 16:43:12,904 - /home/asus/ah/adg - func: get_data - 783.2649619579315
 2016-12-11 17:42:59,134 - /home/asus/ah/adg - func: get_data - 769.5768146514893
+2016-12-11 18:43:31,513 - /home/asus/ah/adg - func: get_data - 802.6532800197601
+2016-12-11 19:43:11,709 - /home/asus/ah/adg - func: get_data - 781.9510078430176
+2016-12-11 20:42:59,584 - /home/asus/ah/adg - func: get_data - 762.8999514579773
+2016-12-11 21:43:15,067 - /home/asus/ah/adg - func: get_data - 786.5208988189697
+2016-12-11 22:43:49,566 - /home/asus/ah/adg - func: get_data - 818.7317106723785
+2016-12-11 23:44:11,284 - /home/asus/ah/adg - func: get_data - 841.994220495224
+2016-12-12 00:44:28,865 - /home/asus/ah/adg - func: get_data - 859.5398552417755
+2016-12-12 01:45:18,976 - /home/asus/ah/adg - func: get_data - 909.5741443634033
+2016-12-12 02:45:16,273 - /home/asus/ah/adg - func: get_data - 906.985769033432
+2016-12-12 03:45:26,940 - /home/asus/ah/adg - func: get_data - 915.830691576004
+2016-12-12 04:45:18,111 - /home/asus/ah/adg - func: get_data - 906.0803828239441
+2016-12-12 10:45:13,927 - /home/asus/ah/adg - func: get_data - 905.909928560257
+2016-12-12 12:45:27,382 - /home/asus/ah/adg - func: get_data - 919.717054605484
+2016-12-12 13:45:09,836 - /home/asus/ah/adg - func: get_data - 901.889862537384
+2016-12-12 14:45:16,261 - /home/asus/ah/adg - func: get_data - 908.7412066459656
+2016-12-12 15:45:21,340 - /home/asus/ah/adg - func: get_data - 913.2739861011505
+2016-12-12 16:45:32,215 - /home/asus/ah/adg - func: get_data - 924.1662333011627
+2016-12-12 17:45:50,332 - /home/asus/ah/adg - func: get_data - 942.2311701774597
+2016-12-12 18:30:08,552 - /home/asus/ah/adg - func: get_data started
+2016-12-12 18:46:25,729 - /home/asus/ah/adg - func: get_data - 977.1768546104431
+2016-12-12 19:30:07,415 - /home/asus/ah/adg - func: get_data started
+2016-12-12 19:45:32,891 - /home/asus/ah/adg - func: get_data - 925.4756495952606
+2016-12-12 20:30:07,648 - /home/asus/ah/adg - func: get_data started
+2016-12-12 20:45:23,453 - /home/asus/ah/adg - func: get_data - 915.8057968616486
+2016-12-12 21:30:08,979 - /home/asus/ah/adg - func: get_data started
+2016-12-12 21:45:15,454 - /home/asus/ah/adg - func: get_data - 906.4746081829071
+2016-12-12 22:30:07,612 - /home/asus/ah/adg - func: get_data started
+2016-12-12 22:45:30,352 - /home/asus/ah/adg - func: get_data - 922.7396538257599
+2016-12-12 23:30:08,400 - /home/asus/ah/adg - func: get_data started
+2016-12-12 23:46:11,628 - /home/asus/ah/adg - func: get_data - 963.2283017635345
+2016-12-13 00:30:07,479 - /home/asus/ah/adg - func: get_data started
+2016-12-13 00:46:27,762 - /home/asus/ah/adg - func: get_data - 980.2822070121765
+2016-12-13 01:30:07,982 - /home/asus/ah/adg - func: get_data started
+2016-12-13 01:46:10,967 - /home/asus/ah/adg - func: get_data - 962.984156370163
+2016-12-13 02:30:07,512 - /home/asus/ah/adg - func: get_data started
+2016-12-13 02:45:59,037 - /home/asus/ah/adg - func: get_data - 951.5247285366058
+2016-12-13 03:30:07,714 - /home/asus/ah/adg - func: get_data started
+2016-12-13 03:45:51,772 - /home/asus/ah/adg - func: get_data - 944.0581231117249
+2016-12-13 04:30:07,608 - /home/asus/ah/adg - func: get_data started
+2016-12-13 04:45:48,507 - /home/asus/ah/adg - func: get_data - 940.8988559246063
+2016-12-13 05:30:07,262 - /home/asus/ah/adg - func: get_data started
+2016-12-13 05:45:49,320 - /home/asus/ah/adg - func: get_data - 942.0583641529083
+2016-12-13 06:30:08,037 - /home/asus/ah/adg - func: get_data started
+2016-12-13 06:45:44,281 - /home/asus/ah/adg - func: get_data - 936.2433245182037
+2016-12-13 07:30:08,034 - /home/asus/ah/adg - func: get_data started
+2016-12-13 07:45:43,821 - /home/asus/ah/adg - func: get_data - 935.7869629859924
+2016-12-13 08:30:07,595 - /home/asus/ah/adg - func: get_data started
+2016-12-13 08:45:22,714 - /home/asus/ah/adg - func: get_data - 915.119268655777
+2016-12-13 09:30:07,543 - /home/asus/ah/adg - func: get_data started
+2016-12-13 10:30:07,465 - /home/asus/ah/adg - func: get_data started
+2016-12-13 11:30:19,672 - /home/asus/ah/adg - func: get_data started
+2016-12-13 12:30:07,108 - /home/asus/ah/adg - func: get_data started
+2016-12-13 13:30:07,837 - /home/asus/ah/adg - func: get_data started
+2016-12-13 14:30:07,310 - /home/asus/ah/adg - func: get_data started
+2016-12-13 15:30:08,017 - /home/asus/ah/adg - func: get_data started
+2016-12-13 23:30:08,795 - /home/asus/ah/adg - func: get_data started
