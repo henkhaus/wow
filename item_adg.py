@@ -43,5 +43,5 @@ for item in posts.find().distinct('item'):
             itemdb.insert_one(newitem)
             newcount +=1
     except: 
-        print("failed on tryblock yessir")
+        print("failed on tryblock")
 
