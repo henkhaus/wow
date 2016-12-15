@@ -42,5 +42,6 @@ for item in posts.find().distinct('item'):
             #print ('adding new player')
             itemdb.insert_one(newitem)
             newcount +=1
-    except: pass
+    except: 
+        print("failed on tryblock")
 
