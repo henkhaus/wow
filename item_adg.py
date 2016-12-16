@@ -1,3 +1,7 @@
+#this code takes a distinct list of item numbers from the item field in the auctiondata collection,
+#and queries the wow api. The return from the wow api is inserted directly to the item collection
+
+
 import pymongo
 from pymongo import MongoClient
 from wowlib import wowapi, queries
