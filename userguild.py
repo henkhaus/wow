@@ -1,3 +1,6 @@
+#this script searches a distinct list of guilds from user collection. the return is then used to populate the
+#user collection with the guild roster
+
 import pymongo
 from pymongo import MongoClient
 from wowlib import wowapi, queries

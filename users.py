@@ -1,3 +1,6 @@
+#1st step in updateing user collection. this script grabs distinct user id's from auctiondata collection
+#and get basic character information for the user collection. after this scrip runs, userguild.py needs to run
+
 import pymongo
 from pymongo import MongoClient
 from wowlib import wowapi, queries
