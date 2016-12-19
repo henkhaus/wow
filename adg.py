@@ -42,7 +42,7 @@ def oldfindhour(bidtrac):
 def findhour(bidtrac):
     count = 0
     for i,item in enumerate(bidtrac):
-        if item[i] == (0,0):
+        if item == [0,0]:
             return i
             break
         count +=0
@@ -85,7 +85,7 @@ def get_data():
         'itemname': "-----<None Defined>-----",
         'status':"Active",
         'bidincrease': 'N',
-        'bidtrac':[(0,0) for x in range(48)] #recently changed from dict of dicts to list of dicts
+        'bidtrac':[(0,0) for x in range(48)] #recently changed from dict odicts to list of dicts
 
         }
         #if statement to insure that only new data is added to the DB. 
