@@ -34,7 +34,7 @@ count = 0
 for item in knownitems:
     try:
             iname = itemdb.find_one({'id':item})
-            posts.update({'item':item, itemname:"-----<None Defined>-----"},{'$set':{'itemname':iname['name']}}, multi= True)
+            posts.update({'item':itemS},{'$set':{'itemname':iname['name']}}, multi= True)
             count +=1
 
             
