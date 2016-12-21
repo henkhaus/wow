@@ -5,7 +5,7 @@ will merge into wowlib
 
 import pymongo
 from pymongo import MongoClient
-from wowlib import wowapi, queries
+from wowlib import wowapi
 
 
 

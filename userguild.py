@@ -27,6 +27,8 @@ for guild in guilds:
 
 print("Number of Unique Guilds :"+ str(len(guild_list)))
 
+#create list of guild servers
+
 members = {}
 for guild in guild_list:
     guildinfo = guild_query(guild, 'Shadow Council')
