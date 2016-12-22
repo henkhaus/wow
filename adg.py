@@ -96,12 +96,12 @@ def get_data():
                 x = findhour(curr_auc['bidtrac'])
                 posts.update({'auc':newrow['auc']},{'$set':{'timeupdated': timestamp,'bidtrac.'+str(x)+'.0': newrow['bid'],'bidtrac.'+str(x)+'.1': timestamp}})
                 updated +=1
-                print (updated)
+                #print (updated)
             except:
                 #x = findhour(curr_auc['bidtrac'])
                 posts.update({'auc':newrow['auc']},{'$set':{'timeupdated': timestamp,}})
                 updated +=1
-                print (updated)
+                #print (updated)
         else: 
             posts.insert_one(newrow)
             newcount +=1
@@ -110,6 +110,8 @@ def get_data():
         
         count +=1
 
+    
 get_data()
-
+print ("New items added : "+int(newcount))
+print ("items updated "+ int(updated))
 
