@@ -7,7 +7,7 @@ import time
 
 
 #connection informattion
-client = MongoClient()
+client = MongoClient("mongodb://76.31.221.129:27017/")
 
 print ('Initiating db connection and getting wow data')
 db = client.wow
@@ -34,7 +34,7 @@ count = 0
 for item in knownitems:
     try:
             iname = itemdb.find_one({'id':item})
-            posts.update({'item':itemS},{'$set':{'itemname':iname['name']}}, multi= True)
+            posts.update({'item':item},{'$set':{'itemname':iname['name']}}, multi= True)
             count +=1
 
             
