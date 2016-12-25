@@ -9,10 +9,7 @@ import time
 
 #connection informattion
 client = MongoClient()
-
-print ('Initiating db connection')
 db = client.wowtest
-print("retrieved data")
 posts = db.users
 timestamp = time.time()
 
@@ -31,11 +28,11 @@ print("Number of Unique Guilds :"+ str(len(guild_list)))
 
 members = {}
 for guild in guild_list:
-    guildinfo = guild_query(guild, 'Shadow Council')
+    guildinfo = wowapi.guild_query(guild, 'Shadow Council')
 
     record ={'server':guildinfo['realm'],
-    'faction':guildinfo['side'],
-    'members':guildinfo['members']
+             'faction':guildinfo['side'],
+             'members':guildinfo['members']
     }
 
 

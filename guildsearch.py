@@ -8,18 +8,15 @@ from wowlib import wowapi
 
 
 
-#connection informattion
+# connection informattion
 client = MongoClient()
-
-print ('Initiating db connection')
 db = client.wow
-print("retrieved data")
-posts = db.users
+userdb = db.users
 
-#create list of unique guilds
+# create list of unique guilds
 guildlist = []
 user_list = []
-for guild in posts.find({"user": {'$regex' : ".* - Blackwater Raiders.*"}}):
+for guild in userdb.find({"user": {'$regex' : ".* - Blackwater Raiders.*"}}):
     if guild['guild'] in guildlist:
         pass
     elif guild['guild']=="_None_":
@@ -50,8 +47,8 @@ for guild in guildlist:
                 
                     try:
                         #<----------------temp to reschema------------->
-                        posts.update({'user':user},
-                        {'$set':
+                        userdb.update({'user':user},
+                                      {'$set':
                         {'user':user,
                         'lvl':newuser['lvl'],
                         'guild':guild,
@@ -60,7 +57,7 @@ for guild in guildlist:
                         'role':newuser['role'],
                         'class':newuser['class'],
                         'spec':newuser['spec']}},
-                        upsert=True)
+                                      upsert=True)
                         print("added " +user)
 
 
