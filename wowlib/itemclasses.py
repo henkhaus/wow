@@ -436,10 +436,11 @@ classdict={17:{
 }
 
 
-
 def itemclass(item):
     iclass = item['itemClass']
-    isubclass = item['itemSubClass']
-
-    iteminfo = {'classname':classdict[iclass]['subclasses'][isubclass] }
+    if 'subclasses' in classdict[iclass].keys():
+        isubclass = item['itemSubClass']
+        iteminfo = [classdict[iclass]['name'], classdict[iclass]['subclasses'][isubclass]['name']]
+    else:
+        iteminfo = [classdict[iclass]['name']]
     return iteminfo
