@@ -9,12 +9,10 @@ import time
 
 #connection informattion
 client = MongoClient()
-
-print ('Initiating db connection and getting wow data')
-db = client.wowtest
-print("retrieved data")
-posts = db.auctiondata
-userdb = db.users
+wowdb = client.wow
+seconddb = client.wow
+auctiondb = seconddb.auctiondata
+userdb = wowdb.users
 timestamp = time.time()
 
 
@@ -27,27 +25,44 @@ for player in dbusers:
 
 
 #aggregates user name and server name return is {_id:{username:"",server:""}}
-usersdata = posts.aggregate([{'$group':{"_id":{'username': '$username.name', 'server' : '$username.server'}}}])
-#create more usable dicyionary
-userdict = {}
-for users in usersdata:
-    cname = str(users['_id']['username'])+" - "+str(users['_id']['server'])
-    try:
-       
-        print(cname)
-        player ={'user':cname,
-        'guild':"_None_",
-        'firstseen':timestamp,
-        'lastseen':timestamp,
-        'lvl':000}
+usersdata = auctiondb.aggregate([{'$group':
+                                      {"_id":{'username': '$owner',
+                                              'server' : '$ownerRealm'}}}])
 
-        if queries.binary_search(knownUsers,player['user'])== True:
-            userdb.update_one({'user':player['user']},{'$set':{'lastseen': timestamp}})
-            updated +=1
-            print (updated)
-        else: 
+#create more usable dictionary
+userdict = {}
+error_count = 0
+for users in usersdata:
+    print ("error Count :" + str(error_count))
+    # character names only only unique per server, so server name was appended in order for this to act as a key
+    c_name = str(users['_id']['username'])
+    c_server = str(users['_id']['server'])
+    character_name = str(c_name + " - " + c_server)
+    #this is in try block due to ascii errors
+
+
+    try:
+        player ={'user':character_name,
+                 'guild': "_None_",
+                 'firstseen': timestamp,
+                 'lastseen': timestamp,
+                 'lvl': 000}
+
+        if userdb.find({'name':c_name, 'realm': c_server}).count()>0:
+            userdb.update_one({'user': player['user']},
+                              {'$set':{'lastseen': timestamp}})
+            print("updated existing record")
+        else:
             print ('adding new player')
-            userdb.insert_one(player)
-            newcount +=1
-    except: pass
+            new_player  = wowapi.char_query(c_name, c_server)
+            userdb.insert_one(new_player)
+
+
+            print("player added")
+    except Exception as e:
+        error_count += 1
+        print("Error")
+        print(e)
+        pass
+
 
