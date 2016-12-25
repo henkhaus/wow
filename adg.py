@@ -9,19 +9,15 @@ from pymongo import MongoClient
 from wowlib import wowapi, queries, log
 import time, os
 
-
 logname = os.path.splitext(__file__)[0]
 
 client = MongoClient()
 
-print ('Initiating db connection and getting wow data')
+print('Initiating db connection and getting wow data')
 db = client.wow
 data = wowapi.auctionurl('Shadow-Council')
 print("retrieved data")
 posts = db.auctiondata
-#findhour is broken. bridtrac returns 
-#{'15': [0, 0],
-# '13': [0, 0], etc..}
 
 #searches through the old bidtrac return and returns an index
 def oldfindhour(bidtrac):
@@ -32,7 +28,6 @@ def oldfindhour(bidtrac):
             
             print ('found it at index '+str(counter))
             return counter
-            break
         #else:
          #  return 0
         counter += 1
@@ -44,66 +39,74 @@ def findhour(bidtrac):
     for i,item in enumerate(bidtrac):
         if item == [0,0]:
             return i
-            break
         count +=0
-
-
 
 @log.log(logname)
 def get_data():
-    #create counters
+    # create counters
     count = 0
     newcount = 0
     timestamp = time.time()
     updated =0
-    print ("Connected")
-    #create list of disctinct auctions in memory
+
+    # create list of distinct auctions in memory
     print ("Creating Auction List")
     auction_list = []
     auctions =posts.find().distinct('auc')
     for auction in auctions:
         auction_list.append(auction)
     print ("Auction List Created")
-    #Iterate through data returned from wowapi
-    for auction  in data:
-        row = data[count]
+
+    # Iterate through data returned from wowapi
+    for i, auction in enumerate(data):
+        row = data[i]
         #create new json, this allows you to add data not returned from wowapi
         newrow = {'buyout': row['buyout'],
-        'timeLeft': row['timeLeft'],
-        'quantity': row['quantity'],
-        'seed': row['seed'],
-        'username': {'name':row['owner'], 'server':row['ownerRealm']},
-        'owner': row['owner'],
-        'item': row['item'],
-        'rand': row['rand'],
-        'bid': row['bid'],
-        'context': row['context'],
-        'auc': row['auc'],
-        'ownerRealm': row['ownerRealm'],
-        'viewtime': timestamp,
-        'timeupdated': timestamp,
-        'itemname': "-----<None Defined>-----",
-        'status':"Active",
-        'bidincrease': 'N',
-        'bidtrac':[(0,0) for x in range(48)] #recently changed from dict odicts to list of dicts
-
+                  'timeLeft': row['timeLeft'],
+                  'quantity': row['quantity'],
+                  'seed': row['seed'],
+                  'username': {'name':row['owner'],
+                               'server':row['ownerRealm']},
+                  'owner': row['owner'],
+                  'item': row['item'],
+                  'rand': row['rand'],
+                  'bid': row['bid'],
+                  'context': row['context'],
+                  'auc': row['auc'],
+                  'ownerRealm': row['ownerRealm'],
+                  'viewtime': timestamp,
+                  'timeupdated': timestamp,
+                  'itemname': "none defined",
+                  'status': "Active",
+                  'bidincrease': 'N',
+                  'item_class': "<none defined>",
+                  'item_subclass':"<none defined>",
+                  'bidtrac':[(0,0) for x in range(48)]
         }
+
         #if statement to insure that only new data is added to the DB. 
 
         if queries.binary_search(auction_list,newrow['auc'])== True:
             curr_auc = posts.find_one({"auc":newrow['auc']})
             try:
+                #findhour finds the index of first empty bidtrac tuple
                 x = findhour(curr_auc['bidtrac'])
-                posts.update({'auc':newrow['auc']},{'$set':{'timeupdated': timestamp,'bidtrac.'+str(x)+'.0': newrow['bid'],'bidtrac.'+str(x)+'.1': timestamp}})
+                posts.update({'auc':newrow['auc']},
+                             {'$set':{'timeupdated': timestamp,
+                                      'bidtrac.'+str(x)+'.0': newrow['bid'],
+                                      'bidtrac.'+str(x)+'.1': timestamp}})
                 updated +=1
-                #print (updated)
-            except:
-                #x = findhour(curr_auc['bidtrac'])
-                posts.update({'auc':newrow['auc']},{'$set':{'timeupdated': timestamp,}})
+                # print (updated)
+            except Exception as e:
+                # x = findhour(curr_auc['bidtrac'])
+                posts.update({'auc':newrow['auc']},
+                             {'$set':{'timeupdated': timestamp}})
                 updated +=1
-                #print (updated)
-        else: 
+                print (e)
+        else:
+            # if auction was not found in auction list, auction is inserted into auctiondata
             posts.insert_one(newrow)
+
             newcount +=1
             offset = 25-len(newrow['owner'])
             print ('New Auction Created by: '+newrow['owner'] + ' '*offset+ ' Total Count :'+ str(count) + "      New auction count : "+ str(newcount) )
@@ -112,6 +115,5 @@ def get_data():
 
     
 get_data()
-print ("New items added : "+int(newcount))
-print ("items updated "+ int(updated))
+
 

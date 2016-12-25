@@ -1,5 +1,7 @@
 import pymongo
 from pymongo import MongoClient
+from wowlib import itemclasses
+import itemclasses
 import os
 
 client = MongoClient()
@@ -69,6 +71,7 @@ def binary_search(lst, item):
     return found
     
 
+def playerprofile(playername):
 
 
 
