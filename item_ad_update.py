@@ -13,28 +13,24 @@ print("retrieved data")
 posts = db.auctiondata
 itemdb = db.items
 
-# create list of known users
+# create list of known items and store in memory
 item_cursor = itemdb.find()
 item_list = []
 for line in item_cursor:
     item_list.append(line)
-print("list created")
-# aggregates user name and server name return is {_id:{username:"",server:""}}
 
-count = 0
+#iterate through item list and update auctiondata wtih item class info
 for row in item_list:
     x = row
     try:
         itemdata = profile.itemclass(row)
-        print(itemdata)
         classname = str(itemdata[0])
         subclass = str(itemdata[1])
-        posts.update({'item': row['id'], 'itemname':"none defined"},{'$set': {'itemname': row['name'],'item_class':classname,'item_subclass': subclass}}, multi=True)
-        count +=1
-        print(count)
+        posts.update({'item': row['id'], 'itemname':"none defined"},
+                     {'$set': {'itemname': row['name'],
+                               'item_class':classname,
+                               'item_subclass': subclass}}, multi=True)
 
     except Exception as e:
-        print(e)
         posts.update({'item': row['id']}, {'$set': {'itemname': row['name']}}, multi=True)
-        count += 1
         print("failed standard update")
