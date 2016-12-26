@@ -12,7 +12,7 @@ db = client.wow
 print("retrieved data")
 posts = db.auctiondata
 itemdb = db.items
-
+#todo.* replace this flie with item_class_pipeline_query
 # create list of known items and store in memory
 item_cursor = itemdb.find()
 item_list = []

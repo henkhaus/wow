@@ -40,9 +40,9 @@ for users in usersdata:
     character_name = str(c_name + " - " + c_server)
     #this is in try block due to ascii errors
 
-
+#/todo/incorporate item_update_classes_pipeline model
     try:
-        player ={'user':character_name,
+        player ={'user':character_name, #/todo/this is a depricated function
                  'guild': "_None_",
                  'firstseen': timestamp,
                  'lastseen': timestamp,

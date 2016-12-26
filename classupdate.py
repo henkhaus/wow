@@ -91,7 +91,7 @@ rolelist= [{
 #        print(pclass)
 
 
-
+#/todo incorporate into user input statement
 for user in posts.find():
     try:
         for pclass in rolelist:
