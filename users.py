@@ -3,12 +3,12 @@
 
 import pymongo
 from pymongo import MongoClient
-from wowlib import wowapi, queries
+from wowlib import wowapi, class_define
 import time
 
 
 #connection informattion
-client = MongoClient()
+client = MongoClient("mongodb://76.31.221.129:27017/")
 wowdb = client.wow
 seconddb = client.wow
 auctiondb = seconddb.auctiondata
@@ -16,21 +16,18 @@ userdb = wowdb.users
 timestamp = time.time()
 
 
-#create list of known users
-knownUsers = []
-dbusers = userdb.distinct('user')
-for player in dbusers:
-    knownUsers.append(player)
-    
-
 
 #aggregates user name and server name return is {_id:{username:"",server:""}}
 usersdata = auctiondb.aggregate([{'$group':
                                       {"_id":{'username': '$owner',
                                               'server' : '$ownerRealm'}}}])
 
+def char_name(userdoc):
+    c_name = str(users['name'])
+    c_server = str(users['realm'])
+    character_name = str(c_name + " - " + c_server)
+    return character_name
 #create more usable dictionary
-userdict = {}
 error_count = 0
 for users in usersdata:
     print ("error Count :" + str(error_count))
@@ -42,23 +39,21 @@ for users in usersdata:
 
 #/todo/incorporate item_update_classes_pipeline model
     try:
-        player ={'user':character_name, #/todo/this is a depricated function
-                 'guild': "_None_",
-                 'firstseen': timestamp,
-                 'lastseen': timestamp,
-                 'lvl': 000}
-
-        if userdb.find({'name':c_name, 'realm': c_server}).count()>0:
-            userdb.update_one({'user': player['user']},
-                              {'$set':{'lastseen': timestamp}})
+        existingplayer = userdb.find({'name':c_name, 'realm': c_server})
+        if existingplayer is not None:
+            userdb.update({'user': character_name},
+                              {'$set':{'lastseen': timestamp,
+                                       }})
             print("updated existing record")
+
+
         else:
             print ('adding new player')
             new_player  = wowapi.char_query(c_name, c_server)
+            new_player['className'] = class_define.defineclass(new_player)
             userdb.insert_one(new_player)
-
-
             print("player added")
+
     except Exception as e:
         error_count += 1
         print("Error")

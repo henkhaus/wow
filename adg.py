@@ -19,19 +19,7 @@ data = wowapi.auctionurl('Shadow-Council')
 print("retrieved data")
 posts = db.auctiondata
 
-#searches through the old bidtrac return and returns an index
-def oldfindhour(bidtrac):
-    print (bidtrac)
-    counter = 0
-    for item in bidtrac:
-        if bidtrac[item]== [0,0]:
-            
-            print ('found it at index '+str(counter))
-            return counter
-        #else:
-         #  return 0
-        counter += 1
-        print ("       counter"+ str(counter))
+
 
 
 def findhour(bidtrac):
@@ -39,7 +27,8 @@ def findhour(bidtrac):
     for i,item in enumerate(bidtrac):
         if item == [0,0]:
             return i
-        count +=0
+        count += 0
+    return 0
 
 @log.log(logname)
 def get_data():
@@ -48,7 +37,7 @@ def get_data():
     newcount = 0
     timestamp = time.time()
     updated =0
-
+    update_stats = {}
     # create list of distinct auctions in memory
     print ("Creating Auction List")
     auction_list = []
@@ -81,38 +70,41 @@ def get_data():
                   'bidincrease': 'N',
                   'item_class': "<none defined>",
                   'item_subclass':"<none defined>",
-                  'bidtrac':[(0,0) for x in range(48)]
+                  'bidtrac':[(0,0) for x in range(45)]
         }
 
-        #if statement to insure that only new data is added to the DB. 
+        #if statement to insure that only new data is added to the DB.
 
         if queries.binary_search(auction_list,newrow['auc'])== True:
             curr_auc = posts.find_one({"auc":newrow['auc']})
             try:
                 #findhour finds the index of first empty bidtrac tuple
                 x = findhour(curr_auc['bidtrac'])
-                posts.update({'auc':newrow['auc']},
+                update_return =posts.update({'auc':newrow['auc']},
                              {'$set':{'timeupdated': timestamp,
                                       'bidtrac.'+str(x)+'.0': newrow['bid'],
                                       'bidtrac.'+str(x)+'.1': timestamp}})
                 updated +=1
+                update_stats = log.logdicts(update_return, update_stats)
                 # print (updated)
             except Exception as e:
                 # x = findhour(curr_auc['bidtrac'])
-                posts.update({'auc':newrow['auc']},
+                update_return = posts.update({'auc':newrow['auc']},
                              {'$set':{'timeupdated': timestamp}})
                 updated +=1
+                update_stats = log.logdicts(update_return, update_stats)
                 print (e)
         else:
             # if auction was not found in auction list, auction is inserted into auctiondata
-            posts.insert_one(newrow)
-
+            update_return = posts.insert_one(newrow)
+            update_stats = log.logdicts(update_return, update_stats)
             newcount +=1
             offset = 25-len(newrow['owner'])
             print ('New Auction Created by: '+newrow['owner'] + ' '*offset+ ' Total Count :'+ str(count) + "      New auction count : "+ str(newcount) )
-        
+
         count +=1
 
+    return {'totalCount': count, 'totalUpdated': updated, "auction_list_length": len(data)}, update_stats
     
 get_data()
 

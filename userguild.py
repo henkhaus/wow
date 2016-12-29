@@ -12,7 +12,7 @@ client = MongoClient()
 db = client.wowtest
 posts = db.users
 timestamp = time.time()
-
+#/todo/ code requires manual server unput
 #create list of known users
 print("Building known user lists from user database")
 knownUsers = []
