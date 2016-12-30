@@ -1,0 +1,41 @@
+2016-12-28 00:49:36,688 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update started
+2016-12-28 00:50:58,394 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update - 81.70631861686707
+2016-12-28 00:50:58,395 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: {'missing_set_length': 349, 'new_items': 0}
+2016-12-28 01:01:29,192 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update started
+2016-12-28 01:02:51,636 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update - 82.44453978538513
+2016-12-28 01:02:51,637 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: {'missing_set_length': 349, 'update_set_count': 0, 'new_items': 0}
+2016-12-28 01:04:44,797 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update started
+2016-12-28 01:31:51,511 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update - 1626.7137281894684
+2016-12-28 01:31:51,512 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: {'new_items': 27, 'update_set_count': 3568, 'missing_set_length': 3866, 'error_count': 298}
+2016-12-28 01:38:33,506 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update started
+2016-12-28 01:43:14,048 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update - 280.54198265075684
+2016-12-28 01:43:14,049 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: ({'new_items': 4, 'error_count': 297, 'missing_set_length': 862, 'update_set_count': 565}, {'n': 0, 'nModified': 0})
+2016-12-28 01:57:52,266 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update started
+2016-12-28 01:58:50,166 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update - 57.89962315559387
+2016-12-28 01:58:50,168 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: ({'update_set_count': 0, 'error_count': 297, 'missing_set_length': 297, 'new_items': 0}, {'n': 0, 'nModified': 0})
+2016-12-28 02:06:12,275 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update started
+2016-12-28 02:07:41,649 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update - 89.37224817276001
+2016-12-28 02:07:41,650 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: ({'error_count': 345, 'update_set_count': 0, 'missing_set_length': 345, 'new_items': 1}, {'n': 0, 'nModified': 0})
+2016-12-28 02:10:30,579 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update started
+2016-12-28 02:12:27,617 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update - 117.03798007965088
+2016-12-28 02:12:27,619 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: ({'update_set_count': 156, 'error_count': 297, 'new_items': 0, 'missing_set_length': 453}, {'n': 39311, 'nModified': 485})
+2016-12-28 02:34:39,300 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update started
+2016-12-28 02:36:26,518 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: item_class_update - 107.2180278301239
+2016-12-28 02:36:26,518 - C:\Users\Todd Hagler\Documents\GitHub\wow\item_class_pipeline_query - func: ({'missing_set_length': 436, 'update_set_count': 139, 'new_items': 0, 'error_count': 297}, {'nModified': 410, 'n': 29189})
+2016-12-28 19:38:09,777 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update started
+2016-12-28 19:40:30,975 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update started
+2016-12-28 19:51:01,819 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update started
+2016-12-28 20:19:04,702 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update - 1682.8814477920532
+2016-12-28 20:19:04,703 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: ({'update_set_count': 1, 'new_items': 64, 'missing_set_length': 3855, 'error_count': 3854}, {'updatedExisting': True, 'nModified': 3, 'ok': 1, 'n': 13})
+2016-12-28 21:04:42,873 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update started
+2016-12-28 21:09:47,201 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update - 304.3282263278961
+2016-12-28 21:09:47,202 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: ({'new_items': 14, 'missing_set_length': 691, 'update_set_count': 377, 'error_count': 314}, {'ok': 377, 'updatedExisting': True, 'n': 64258, 'nModified': 1282})
+2016-12-30 01:41:54,649 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update started
+2016-12-30 01:50:29,926 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update started
+2016-12-30 01:51:12,797 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update started
+2016-12-30 01:52:07,818 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update started
+2016-12-30 01:52:08,052 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update started
+2016-12-30 01:57:15,711 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update - 307.89337706565857
+2016-12-30 01:57:15,711 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: ({'missing_set_length': 938, 'update_set_count': 612, 'error_count': 326, 'new_items': 6}, {'nModified': 1222, 'updatedExisting': True, 'n': 31837, 'ok': 612})
+2016-12-30 01:57:15,898 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: item_class_update - 307.84650135040283
+2016-12-30 01:57:15,898 - C:/Users/Todd Hagler/Documents/GitHub/wow/item_class_pipeline_query - func: ({'missing_set_length': 938, 'error_count': 326, 'update_set_count': 612, 'new_items': 6}, {'ok': 612, 'nModified': 428, 'updatedExisting': True, 'n': 31837})

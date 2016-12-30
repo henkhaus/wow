@@ -1,57 +1,8 @@
-import pymongo
-from pymongo import MongoClient
-from wowlib import itemclasses
-# import itemclasses
-import os
-
-client = MongoClient()
-
-# using wow.auctiondata
-db = client.wow
-posts = db.auctiondata
+from wowlib import mongoconnection
 
 
-def liros():
-    '''finds all liros documents'''
-    resultcount = 0
-    for name in posts.find({'owner':'Liros'},
-                            {'owner': 1, 'auc': 1, 'bid': 1}):
-        print (name)
-        resultcount += 1
-    print(resultcount)
+auctions = mongoconnection.auctionconnection()
 
-def count_docs():
-    '''finds all documents'''
-    resultcount = 0
-    for doc in posts.find():
-        resultcount += 1
-    print(resultcount)
-
-def player_auction():
-    '''finds unique auction items for currently for sale by user'''
-    player = raw_input("User Name :")
-    resultcount = 0
-    for name in posts.distinct('auc',{'owner':player}):
-        print (name)
-        resultcount += 1
-    print(resultcount)
-
-def countdocs():
-    ''' a really fast way to count the number of documents'''
-    print (posts.count())
-
-def current_aucs():
-    '''finds current auctions for a player'''
-    '''
-    # calculate 3 days ago
-    gen_time = datetime.datetime.now() - datetime.timedelta(days=3)
-    # create dummy object id to query against
-    dummy_id = ObjectId.from_datetime(gen_time)
-    # get all docs that are older then 3 days
-    to_delete = posts.find({'_id': {'$lt': dummy_id}})
-    '''
-    #player = raw_input("User Name :")
-    #print(posts.find_one({'owner':player}).sort({'_id':-1}))    
 
 def binary_search(lst, item):
     alist = sorted(lst)
@@ -69,11 +20,30 @@ def binary_search(lst, item):
             else:
                 first = midpoint+1
     return found
-    
 
 
+def set_inactive():
+    hour_list = auctions.find().distinct('timeupdated')
+    hour_list = sorted(hour_list)
+    last_seen = hour_list[-1]
+    auctions.update({'timeupdated': {'$lt': last_seen}},
+                    {'$set': {'status': 'inactive'}}, multi=True)
+    return 0
 
 
+def active_subclass_return(subclass_name: str) -> object:
+    '''
+    returns pipeline for selected sub_class contain current quantities and average costs
+    :rtype: pipeline
+    '''
 
-#print(posts.find_one())
-#print(resultcount)
+    pipeline = auctions.aggregate([
+
+        {'$match': {'status': 'Active', 'item_subclass':subclass_name}},
+        {'$group': {
+            '_id': '$itemname',
+            'quantity': {'$sum': '$quantity'},
+            'buyout': {'$avg': {'$divide': [{'$divide': ['$buyout', '$quantity']}, 10000]}}}},
+
+    ])
+    return pipeline

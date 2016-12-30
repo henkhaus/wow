@@ -21,6 +21,7 @@ print("retrieved data")
 posts = db.auctiondata
 import sys
 
+
 # Print iterations progress
 def printProgress (iteration, total, prefix = '', suffix = '', decimals = 1, barLength = 100):
     """

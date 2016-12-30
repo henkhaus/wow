@@ -20,7 +20,7 @@ def log(logname):
     def decorate(func):
         @wraps(func)
         def wrapper(*args, **kwargs):
-            # new_log = locallogger(logname)
+            #new_log = locallogger(logname)
             start = time.time()
             new_log.info('func: ' + str(func.__name__) + ' started')
             result = func(*args, **kwargs)
@@ -38,7 +38,7 @@ def locallogger(logname):
     logger = logging.getLogger(logname)
     logger.setLevel(logging.DEBUG)
     formatter = logging.Formatter('%(asctime)s - %(name)s - %(message)s')
-    handler = logging.FileHandler(os.path.join(log_location, logname + '.log'), 'a')
+    handler = logging.FileHandler(os.path.join(log_location, logname + '.log',))
     handler.setFormatter(formatter)
     logger.addHandler(handler)
     return logger

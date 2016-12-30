@@ -1,4 +1,4 @@
-import urllib.request, json
+import urllib.request, json, time
 
 
 #Variables
@@ -88,3 +88,8 @@ def itemquery(itemnumber):
     data = json.loads(encoding)
 
     return data
+
+def print_time(unixtime):
+    human_time = time.strftime("%D %H:%M", time.localtime(int(unixtime)))
+    return  human_time
+
