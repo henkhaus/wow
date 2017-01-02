@@ -32,7 +32,7 @@ def get_data():
 
     # create list of distinct auctions in memory
     auction_list = []
-    auctions = posts.find().distinct('auc')
+    auctions = posts.find({'status':'Active'}).distinct('auc')
     for auction in auctions:
         auction_list.append(auction)
     print("Auction List Created")
