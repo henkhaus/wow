@@ -31,7 +31,7 @@ def set_inactive():
     return 0
 
 
-def active_subclass_return(subclass_name: str) -> object:
+def active_subclass_query(subclass_name: str) -> object:
     '''
     returns pipeline for selected sub_class contain current quantities and average costs
     :rtype: pipeline
