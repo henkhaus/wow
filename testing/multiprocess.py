@@ -5,7 +5,7 @@ import multiprocessing
 #/todo rewrite updatefunction to be a map function. Ie when mapped, all items in iterable can have this function applied to them
 logname = os.path.splitext(__file__)[0]
 data = wowapi.auctionurl('Shadow-Council')
-posts = mongoconnection.auctionconnection()
+posts_init = mongoconnection.auctionconnection()
 threads = 3
 ####
 # create counters
@@ -17,7 +17,7 @@ update_stats = {}
 
 # create list of distinct auctions in memory
 auction_list = []
-auctions = posts.find({'status': 'Active'}).distinct('auc')
+auctions = posts_init.find({'status': 'Active'}).distinct('auc')
 for auction in auctions:
     auction_list.append(auction)
 print("Auction List Created")
@@ -38,6 +38,7 @@ def findhour(bidtrac):
 
 
 def updatefunction(auction):
+    posts = mongoconnection.auctionconnection()
     count = 0
     newcount = 0
     updated = 0

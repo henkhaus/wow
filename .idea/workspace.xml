@@ -21,8 +21,8 @@
       <file leaf-file-name="multiprocess.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/testing/multiprocess.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="412">
-              <caret line="70" column="17" lean-forward="false" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
+            <state relative-caret-position="612">
+              <caret line="58" column="21" lean-forward="true" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
               <folding>
                 <element signature="e#0#70#0" expanded="true" />
               </folding>
@@ -43,7 +43,7 @@
       <file leaf-file-name="adg.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/adg.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
+            <state relative-caret-position="-282">
               <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="17" />
               <folding />
             </state>
@@ -555,7 +555,14 @@
       <option name="project" value="LOCAL" />
       <updated>1483328049276</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="logging added to multiprocess">
+      <created>1484073590666</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1484073590666</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -625,7 +632,8 @@
     <MESSAGE value="major changes to functions.&#10;Added return functiions to log script." />
     <MESSAGE value="queries update" />
     <MESSAGE value="distinct auction list now contains only active auctions" />
-    <option name="LAST_COMMIT_MESSAGE" value="distinct auction list now contains only active auctions" />
+    <MESSAGE value="logging added to multiprocess" />
+    <option name="LAST_COMMIT_MESSAGE" value="logging added to multiprocess" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -962,7 +970,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/adg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
+        <state relative-caret-position="-282">
           <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="17" />
           <folding />
         </state>
@@ -970,8 +978,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/testing/multiprocess.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="70" column="17" lean-forward="false" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
+        <state relative-caret-position="612">
+          <caret line="58" column="21" lean-forward="true" selection-start-line="58" selection-start-column="21" selection-end-line="58" selection-end-column="21" />
           <folding>
             <element signature="e#0#70#0" expanded="true" />
           </folding>
