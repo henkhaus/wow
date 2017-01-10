@@ -68,7 +68,7 @@ def updatefunction(auction):
         posts.insert_one(newrow)
         newcount += 1
     count += 1
-
+@log.log(logname)
 def mp_handler(data_parser):
     p = multiprocessing.Pool(threads)
     p.map(updatefunction, data_parser)
