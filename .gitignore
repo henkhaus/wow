@@ -1,3 +1,7 @@
 wowlib/mongoconnection.py
+<<<<<<< HEAD
 .idea/workspace.xml
+=======
+*.ipynb
+>>>>>>> master
 *.xml
