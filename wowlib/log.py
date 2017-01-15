@@ -3,7 +3,7 @@ import time
 import logging
 from functools import wraps
 #/todo/ Create manual logger for log errors
-log_location = r'/home/logs'
+log_location = r'/home/'
 
 
 # new_log = locallogger(logname)
