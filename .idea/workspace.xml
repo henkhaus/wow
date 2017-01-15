@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6ac8ff1c-a404-41b9-9177-771bad1d6cfe" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/testing/multiprocess.py" afterPath="$PROJECT_DIR$/testing/multiprocess.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -606,7 +605,14 @@
       <option name="project" value="LOCAL" />
       <updated>1484448045839</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="fixed fork() issue">
+      <created>1484449380152</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1484449380152</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView" selected-index="2">
@@ -679,7 +685,8 @@
     <MESSAGE value="logging added to multiprocess" />
     <MESSAGE value="moved db connection" />
     <MESSAGE value="changed log path" />
-    <option name="LAST_COMMIT_MESSAGE" value="changed log path" />
+    <MESSAGE value="fixed fork() issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed fork() issue" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
