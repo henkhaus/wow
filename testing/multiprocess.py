@@ -2,6 +2,8 @@ from wowlib import wowapi, queries, log, mongoconnection, doctemplates
 import time
 import os
 import multiprocessing
+import pymongo
+from pymongo import MongoClient
 #/todo rewrite updatefunction to be a map function. Ie when mapped, all items in iterable can have this function applied to them
 logname = os.path.splitext(__file__)[0]
 data = wowapi.auctionurl('Shadow-Council')
@@ -38,7 +40,9 @@ def findhour(bidtrac):
 
 
 def updatefunction(auction):
-    posts = mongoconnection.auctionconnection()
+    client= MongoClient('mongodb://localhost:27017/')
+    db = client.wowtest
+    posts = db.auctiondata
     count = 0
     newcount = 0
     updated = 0
