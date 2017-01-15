@@ -23,6 +23,7 @@ auctions = posts_init.find({'status': 'Active'}).distinct('auc')
 for auction in auctions:
     auction_list.append(auction)
 print("Auction List Created")
+posts_init.close()
 ######
 data_parser =[]
 for item in data:
